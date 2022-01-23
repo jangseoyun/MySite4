@@ -11,7 +11,7 @@ public class UserDao {
 	
 	@Autowired
 	private SqlSession sqlsession;
-	
+
 	//한명의 유저정보 가져오기
 	public UserVo getUser(UserVo userVo) {
 		System.out.println("dao.getUser 접근");

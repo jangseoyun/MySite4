@@ -13,7 +13,7 @@
 
 	<div id="header" class="clearfix">
 		<h1>
-			<a href="">MySite</a>
+			<a href="/mysite4/index">MySite</a>
 		</h1>
 
 		<!-- 
@@ -36,7 +36,7 @@
 			<li><a href="">입사지원서</a></li>
 			<li><a href="">게시판</a></li>
 			<li><a href="">갤러리</a></li>
-			<li><a href="">방명록</a></li>
+			<li><a href="/mysite4/guest/addList">방명록</a></li>
 		</ul>
 	</div>
 	<!-- //nav -->
