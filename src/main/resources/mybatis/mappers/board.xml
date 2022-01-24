@@ -36,14 +36,55 @@
 		<![CDATA[
 			insert into board
 			values(seq_board_no.nextval,
-			#{title},
-			#{content},
-			#{hit},
-			sysdate,
-			#{uNo})
+							#{title},
+							#{content},
+							#{hit},
+							sysdate,
+							#{uNo})
 		]]>
 	</insert>
 	
+	<!-- 게시글 삭제 -->
+	<delete id="boardDelete" parameterType="int">
+		<![CDATA[
+			delete from board
+			where no = #{bNo}
+		]]>
+	</delete>
+	
+	<!-- 게시글 읽기 -->
+	<select id="boardSelect" resultMap="resultMapBoardVo" parameterType="int">
+		<![CDATA[
+			select  users.name name,
+			        board.hit hit,
+			        to_char(board.reg_date, 'yyyy-mm-dd') reg_date,
+			        board.title title,
+			        board.content content,
+			        board.no bNo
+			from users, board
+			where users.no = board.user_no
+			and board.no = #{bNo}
+		]]>
+	</select>
+
+	<!-- 게시글 수정 -->
+	<update id="boardModify" parameterType="com.javaex.vo.BoardVo">
+		<![CDATA[
+			update board
+			set title = #{title},
+			    content = #{content}
+			where no = #{bNo}
+		]]>
+	</update>
+	
+	<!-- 조회수 증가 -->
+	<update id="viewsUpdate" parameterType="int">
+		<![CDATA[
+			update board
+			set hit = hit+1
+			where board.no = #{bNo}
+		]]>
+	</update>
 	
 	
 </mapper>

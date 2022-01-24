@@ -68,12 +68,14 @@
 									<tr>
 										<td>${boardList.bNo}</td>
 										<td class="text-left">
-											<a href="">${boardList.title}</a>
+											<a href="${pageContext.request.contextPath}/board/read?bNo=${boardList.bNo}">${boardList.title}</a>
 										</td>
 										<td>${boardList.uName}</td>
 										<td>${boardList.hit}</td>
 										<td>${boardList.regDate}</td>
-										<td><a href="">[삭제]</a></td>
+										<c:if test="${sessionScope.authUser.no == boardList.userNo}">
+											<td><a href="${pageContext.request.contextPath}/board/delete?bNo=${boardList.bNo}">[삭제]</a></td>
+										</c:if>
 									</tr>							
 								</tbody>
 							</c:forEach>	
