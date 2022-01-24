@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>mysite4 deleteForm</title>
-<link href="/mysite4/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/mysite4/assets/css/guestbook.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/guestbook.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -44,7 +44,7 @@
 				<!-- //content-head -->
 
 				<div id="guestbook">
-					<form action="/mysite4/guest/delete" method="get">
+					<form action="${pageContext.request.contextPath}/guest/delete" method="get">
 						<table id="guestDelete">
 							<colgroup>
 								<col style="width: 10%;">
@@ -58,7 +58,7 @@
 								<td class="text-left">
 									<button type="submit" name="no" value="${param.no}">삭제</button>
 								</td>
-								<td><a href="/mysite4/index">[메인으로 돌아가기]</a></td>
+								<td><a href="${pageContext.request.contextPath}/index">[메인으로 돌아가기]</a></td>
 							</tr>
 						</table>
 						

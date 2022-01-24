@@ -1,10 +1,7 @@
 package com.javaex.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.javaex.dao.GuestbookDao;
+import com.javaex.service.GuestbookService;
 import com.javaex.vo.GuestbookVo;
 
 @Controller
@@ -21,14 +18,14 @@ import com.javaex.vo.GuestbookVo;
 public class GuestbookController {
 
 	@Autowired
-	private GuestbookDao guestbookDao;
+	private GuestbookService guestbookService;
 	
 	//------------addList 등록폼-----------------------------------
 	@RequestMapping(value="/addList", method = {RequestMethod.GET,RequestMethod.POST})
 	public String addList(Model model) {
 	
 		System.out.println("guestController.addList 접근");
-		List<GuestbookVo> guestbookList = guestbookDao.getList();
+		List<GuestbookVo> guestbookList = guestbookService.getList();
 		System.out.println(guestbookList);
 		
 		//컨트롤러가 --> DS 데이터를 보낸다
@@ -43,7 +40,7 @@ public class GuestbookController {
 		
 		System.out.println("guestController.add 접근");
 		
-		guestbookDao.guestbookInsert(guestbookVo);
+		guestbookService.guestbookInsert(guestbookVo);
 		
 		return "redirect:/guest/addList";
 	}
@@ -64,7 +61,7 @@ public class GuestbookController {
 		
 		System.out.println("guestController.delete 접근");
 		
-		guestbookDao.guestbookDelete(no, password);
+		guestbookService.guestbookDelete(no, password);
 		
 		return "redirect:/guest/addList";
 	}

@@ -12,7 +12,7 @@ public class UserDao {
 	@Autowired
 	private SqlSession sqlsession;
 
-	//한명의 유저정보 가져오기
+	//한명의 유저정보 가져오기---------------------------------------
 	public UserVo getUser(UserVo userVo) {
 		System.out.println("dao.getUser 접근");
 		System.out.println(userVo);
@@ -22,6 +22,15 @@ public class UserDao {
 		return authUser;
 	
 	}
+	
+	//한명의 유저정보 가져오기---------------------------------------
+	public void joinInsert(UserVo userVo) {
+		
+		System.out.println("dao.joinInsert 접근");
+		
+		sqlsession.insert("user.userInsert",userVo);
+	}
+	
 	
 	
 }

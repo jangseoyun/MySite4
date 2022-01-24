@@ -5,6 +5,7 @@
 <mapper namespace="user">
 
 	<!-- 쿼리문 작성 -->
+	<!-- 로그인 -->
 	<select id="getUser" parameterType="com.javaex.vo.UserVo" resultType="com.javaex.vo.UserVo">
 	
 		<![CDATA[
@@ -16,6 +17,18 @@
 		]]>
 		
 	</select>
+	
+	<!-- 회원가입 등록 -->
+	<insert id="userInsert" parameterType="com.javaex.vo.UserVo">
+		<![CDATA[
+			insert into users
+			values (seq_users_no.nextval,
+			#{id},
+			#{password},
+			#{name},
+			#{gender})
+		]]>
+	</insert>
 	
 	
 </mapper>
