@@ -55,15 +55,6 @@ public class BoardService {
 		return boardDao.viewsUpdate(bNo);
 	}
 	
-	//---------board read 게시글 읽기--------------------------------
-	public BoardVo modifySelect(int bNo){
-
-		System.out.println("service.board.modifySelect 접근");
-		BoardVo boardVo = boardDao.boardSelect(bNo);
-		
-		return boardVo;
-	}
-	
 	//---------board modify 게시글 수정--------------------------------
 	public int modify(BoardVo boardVo) {
 		

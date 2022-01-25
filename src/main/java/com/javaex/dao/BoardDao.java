@@ -54,16 +54,6 @@ public class BoardDao {
 		return sqlsession.update("board.viewsUpdate",bNo);
 	}
 	
-	//------수정 게시글 읽기--------------------------------------
-	public BoardVo modifySelect(int bNo){
-		
-		System.out.println("dao.board.modifySelect 접근");
-		BoardVo boardVo = sqlsession.selectOne("board.boardSelect", bNo);
-		
-		return boardVo;
-
-	}
-	
 	//------게시글 수정--------------------------------------
 	public int modify(BoardVo boardVo) {
 		
