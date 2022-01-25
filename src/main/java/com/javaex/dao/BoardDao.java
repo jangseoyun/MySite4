@@ -23,7 +23,7 @@ public class BoardDao {
 		return boardList;
 	}
 	
-	//------게시글 작성--------------------------------------
+	//------게시글 등록--------------------------------------
 	public int boardInsert(BoardVo boardVo) {
 		
 		System.out.println("dao.board.boardInsert 접근");
