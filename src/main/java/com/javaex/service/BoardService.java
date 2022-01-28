@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.javaex.dao.BoardDao;
 import com.javaex.vo.BoardVo;
+import com.javaex.vo.RboardVo;
 
 @Service
 public class BoardService {
@@ -61,4 +62,24 @@ public class BoardService {
 		System.out.println("service.board.modify 접근");
 		return boardDao.modify(boardVo);
 	}
+	
+	//=====댓글 게시판========================================================
+	
+	//---------replyboard List 댓글 게시판 리스트--------------------------------
+	public List<RboardVo> replySelect() {
+		
+		System.out.println("service.board.replySelect 접근");
+		return boardDao.replyList();
+		
+	}
+	
+	//---------replyboard write 댓글게시판 글쓰기--------------------------------
+	public int replyInsert(RboardVo rboardVo) {
+		
+		System.out.println("service.board.replayInsert 접근");
+		return boardDao.replyInsert(rboardVo);
+		
+	}
+	
+	
 }

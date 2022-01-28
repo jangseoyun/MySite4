@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="rboard">
+
+	<!-- 댓글 리스트 불러오기 -->
+	<select id="replySelect" resultType="com.javaex.vo.RboardVo">
+		<![CDATA[
+			select  rboard.no rbNo,
+			        rboard.title title,
+			        users.name uName,
+			        rboard.hit hit,
+			        to_char(rboard.reg_date, 'yyyy-mm-dd') regDate,
+			        rboard.user_no userNo,
+			        rboard.content content,
+			        rboard.group_no groupNo,
+			        rboard.order_no orderNo,
+			        rboard.depth depth
+			from users, rboard
+			where users.no = rboard.user_no
+			order by group_no desc, order_no asc
+		]]>
+	</select>
+	
+	<!-- 댓글 글작성 -->
+	<insert id="replyInsert" parameterType="com.javaex.vo.RboardVo">
+		<![CDATA[
+			insert into rboard
+				values(seq_rboard_no.nextval,
+				                        #{userNo},
+				                        #{title},
+				                        #{content},
+				                        #{hit},
+				                        sysdate,
+				                        #{groupNo},
+				                        1,
+				                        #{depth}
+				)
+		]]>
+	</insert>
+	
+	<!-- groupNo 업데이트 -->
+	<update id="groupNo">
+		<![CDATA[
+			
+			
+		]]>
+	</update>
+	
+	
+
+
+</mapper>

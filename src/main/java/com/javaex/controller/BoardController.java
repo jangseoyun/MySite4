@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.BoardService;
 import com.javaex.vo.BoardVo;
+import com.javaex.vo.RboardVo;
 
 @Controller
 @RequestMapping(value="/board")
@@ -100,4 +101,37 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
+	//=========reply board 댓글 게시판==============================================================
+	
+	
+	//--------rboard list 댓글게시판 리스트--------------------------------------------------------
+	@RequestMapping(value="/replyList", method = {RequestMethod.GET,RequestMethod.POST})
+	public String replyList(Model model) {
+		
+		System.out.println("controller.board.replyList 접근");
+		List<RboardVo> replyBoardList = boardService.replySelect();
+		
+		model.addAttribute("replyBoardList",replyBoardList);
+		
+		return "board/replyList";
+	}
+	
+	//--------rboard writeForm 댓글게시판 글쓰기폼-----------------------------------------------------
+	@RequestMapping(value="/replyWriteForm", method = {RequestMethod.GET,RequestMethod.POST})
+	public String replyWriteForm(@ModelAttribute RboardVo rboardVo) {
+		
+		System.out.println("controller.board.replyWriteForm 접근");
+		
+		return "board/replyWriteForm";
+	}
+	
+	//--------rboard write 댓글게시판 글쓰기-----------------------------------------------------
+	@RequestMapping(value="/replyWrite", method = {RequestMethod.GET,RequestMethod.POST})
+	public String replyWrite(@ModelAttribute RboardVo rboardVo) {
+		
+		System.out.println("controller.board.replyWrite 접근");
+		boardService.replyInsert(rboardVo);
+		
+		return "redirect:/board/replyList";
+	}
 }

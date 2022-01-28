@@ -57,14 +57,26 @@ public class GuestbookDao {
 	}
 
 	
+	//========ajax 방명록=====================================
 	
-	// ------------no,password select-----------------
-	public String guestNoPassword() {
-
-		return "";
+	// ------------insert&selectKey-----------------------------
+	public int insertSelectKey(GuestbookVo guestbookVo) {
+		
+		System.out.println("guestDao.insertSelectKey 접근");
+		System.out.println(guestbookVo); //no없음
+		
+		
+		System.out.println(guestbookVo); //no들어가있음
+		
+		return sqlsession.insert("guestbook.insertSelectKey",guestbookVo);
 	}
-
 	
+	// ------------selectOne--방명록 글 한개 가져오기---------------------------
+	public GuestbookVo selectGuest(int no) {
+		System.out.println("guestDao.selectGuest 접근");
+		
+		return sqlsession.selectOne("guestbook.selectByNo", no);
+	}
 
 	
 

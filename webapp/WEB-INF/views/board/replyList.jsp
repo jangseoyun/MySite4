@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>board list</title>
+<title>replyboard List</title>
 <link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/board.css" rel="stylesheet" type="text/css">
 
@@ -15,7 +15,7 @@
 <body>
 	<div id="wrap">
 
-		<!-- //header, nav -->
+		<!-- //header,nav -->
 		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 
 		<div id="container" class="clearfix">
@@ -31,18 +31,18 @@
 			<div id="content">
 
 				<div id="content-head">
-					<h3>게시판</h3>
+					<h3>댓글게시판</h3>
 					<div id="location">
 						<ul>
 							<li>홈</li>
 							<li>게시판</li>
-							<li class="last">일반게시판</li>
+							<li class="last">댓글게시판</li>
 						</ul>
 					</div>
 					<div class="clear"></div>
 				</div>
 				<!-- //content-head -->
-
+	
 				<div id="board">
 					<div id="list">
 						<form action="" method="">
@@ -51,7 +51,7 @@
 								<button type="submit" id=btn_search>검색</button>
 							</div>
 						</form>
-						<table>
+						<table >
 							<thead>
 								<tr>
 									<th>번호</th>
@@ -60,28 +60,30 @@
 									<th>조회수</th>
 									<th>작성일</th>
 									<th>관리</th>
+									<th>groupNo</th>
+									<th>orderNo</th>
+									<th>depth</th>
 								</tr>
 							</thead>
-
-							<c:forEach items="${requestScope.boardList}" var="boardList">
+							
+							<c:forEach items="${replyBoardList}" var="rboardList">
 								<tbody>
 									<tr>
-										<td>${boardList.bNo}</td>
-										<td class="text-left">
-											<a href="${pageContext.request.contextPath}/board/read?bNo=${boardList.bNo}">${boardList.title}</a>
-										</td>
-										<td>${boardList.uName}</td>
-										<td>${boardList.hit}</td>
-										<td>${boardList.regDate}</td>
-										<c:if test="${sessionScope.authUser.no == boardList.userNo}">
-											<td><a href="${pageContext.request.contextPath}/board/delete?bNo=${boardList.bNo}">[삭제]</a></td>
-										</c:if>
-									</tr>							
+										<td>${rboardList.rbNo}</td>
+										<td class="text-left"><a href="${pageContext.request.contextPath}/board/replyRead">${rboardList.title}</a></td>
+										<td>${rboardList.uName}</td>
+										<td>${rboardList.hit}</td>
+										<td>${rboardList.regDate}</td>
+										<td><a href="">[삭제]</a></td>
+										<td>${rboardList.groupNo}</td>
+										<td>${rboardList.orderNo}</td>
+										<td>${rboardList.depth}</td>
+									</tr>
 								</tbody>
-							</c:forEach>	
-									
+							</c:forEach>
+							
 						</table>
-
+			
 						<div id="paging">
 							<ul>
 								<li><a href="">◀</a></li>
@@ -97,13 +99,13 @@
 								<li><a href="">10</a></li>
 								<li><a href="">▶</a></li>
 							</ul>
-
-
+							
+							
 							<div class="clear"></div>
 						</div>
 						
-						<c:if test="${sessionScope.authUser != null}">
-							<a id="btn_write" href="${pageContext.request.contextPath}/board/writeForm?uNo=${sessionScope.authUser.no}">글쓰기</a>
+						<c:if test="${sessionScope.authUser != null }">
+							<a id="btn_write" href="${pageContext.request.contextPath}/board/replyWriteForm">글쓰기</a>
 						</c:if>
 
 					</div>
@@ -115,7 +117,7 @@
 
 		</div>
 		<!-- //container  -->
-
+		
 
 		<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 		<!-- //footer -->

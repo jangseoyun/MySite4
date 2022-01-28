@@ -42,5 +42,22 @@ public class GuestbookService {
 		return count;
 	}
 	
+	//=========ajax 방명록====================================
+	
+	//---------방명록 글 저장 --> 저장글 리턴-------------------------------------
+	public GuestbookVo addGuestResultVo(GuestbookVo guestbookVo) {
+		
+		System.out.println("service.addGuestResultVo 접근");
+		//System.out.println(guestbookVo);
+		//저장하기
+		int count = guestbookDao.insertSelectKey(guestbookVo);
+		
+		//저장한 내용 가져오기
+		int no = guestbookVo.getNo();
+		//0x999
+		GuestbookVo gVo= guestbookDao.selectGuest(no);
+		return gVo;
+	}
+	
 	
 }

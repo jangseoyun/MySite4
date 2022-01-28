@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.javaex.vo.BoardVo;
+import com.javaex.vo.RboardVo;
 
 @Repository
 public class BoardDao {
@@ -62,4 +63,23 @@ public class BoardDao {
 		
 	}
 	
+	//======댓글게시판 dao===========================================================
+	
+	//------댓글게시판 리스트--------------------------------------
+	public List<RboardVo> replyList(){
+		
+		System.out.println("dao.board.replyList 접근");
+		
+		List<RboardVo> replyBoardList = sqlsession.selectList("rboard.replySelect"); 
+		
+		return replyBoardList ;
+	}
+	
+	//------댓글게시판 글쓰기--------------------------------------
+	public int replyInsert(RboardVo rboardVo) {
+		
+		System.out.println("dao.board.replyInsert 접근");
+		return sqlsession.insert("rboard.replyInsert",rboardVo);
+		
+	}
 }
