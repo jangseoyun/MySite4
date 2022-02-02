@@ -9,6 +9,8 @@
 <link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/user.css" rel="stylesheet" type="text/css">
 
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery-1.12.4.js"></script>
+
 </head>
 
 <body>
@@ -49,18 +51,22 @@
 
 							<!-- 아이디 -->
 							<div class="form-group">
-								<label class="form-text" for="input-uid">아이디</label> <input type="text" id="input-uid" name="id" value="" placeholder="아이디를 입력하세요">
-								<button type="button" id="">중복체크</button>
+								<label  class="form-text" for="input-uid">아이디</label> 
+								<input type="text" id="input-uid" name="id" value="" placeholder="아이디를 입력하세요">
+								<button type="button" id="btnIdCheck">중복체크</button>
 							</div>
+							<div id="idAlert" value=""></div>
 
 							<!-- 비밀번호 -->
 							<div class="form-group">
-								<label class="form-text" for="input-pass">패스워드</label> <input type="text" id="input-pass" name="password" value="" placeholder="비밀번호를 입력하세요">
+								<label class="form-text" for="input-pass">패스워드</label> 
+								<input type="text" id="input-pass" name="password" value="" placeholder="비밀번호를 입력하세요">
 							</div>
 
 							<!-- 이름 -->
 							<div class="form-group">
-								<label class="form-text" for="input-name">이름</label> <input type="text" id="input-name" name="name" value="" placeholder="이름을 입력하세요">
+								<label class="form-text" for="input-name">이름</label> 
+								<input type="text" id="input-name" name="name" value="" placeholder="이름을 입력하세요">
 							</div>
 
 							<!-- 성별 -->
@@ -101,5 +107,50 @@
 	<!-- //wrap -->
 
 </body>
+
+<script type="text/javascript">
+	
+	/* 아이디 중복테스트 버튼 이벤트 */
+	$("#btnIdCheck").on("click",function(){
+		
+		console.log("클릭");
+		
+		//데이터 모으기
+		var idBox = {id : $("#input-uid").val()}; 
+
+		$.ajax({
+			//-------보낼때
+			//요청할 컨트롤러 주소
+			url : "${pageContext.request.contextPath}/user/idCheck",
+			//주소창이 변하지 않기 때문에 post,get 방식 모두 동일 
+			type : "post",
+			//contentType : "application/json",
+			data : idBox, 
+			
+			//-------받을때 
+			dataType : "json",
+			success : function(count){//json-->js로 변환되어 들어옴
+				/*성공시 처리해야될 코드 작성*/
+				console.log(count);
+				
+				if(count==1){
+					$("#idAlert").html("<strong>이미 사용중인 아이디입니다</strong>");
+					$("#input-uid").val("");
+				}else{
+					$("#idAlert").html("<strong>사용 가능한 아이디입니다</strong>");
+				}
+
+			},
+			error : function(XHR, status, error) {
+				csole.error(status + " : " + error);
+			}
+			
+		})
+		
+		//---------------------------------------------------------
+	})
+
+	
+</script>
 
 </html>

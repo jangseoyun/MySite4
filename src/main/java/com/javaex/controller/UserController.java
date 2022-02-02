@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.UserService;
 import com.javaex.vo.UserVo;
@@ -74,7 +75,7 @@ public class UserController {
 		return "user/joinForm";
 	}
 	
-	//----------join-----------------------------------
+	//----------join----------------------------------------------
 	@RequestMapping(value="/join", method = {RequestMethod.GET,RequestMethod.POST})
 	public String join(@ModelAttribute UserVo userVo) {
 		
@@ -85,6 +86,18 @@ public class UserController {
 	}
 	
 	
+	//========아이디 중복 체크=====================================================
+	
+	//----------idCheck----------------------------------------------
+	@ResponseBody
+	@RequestMapping(value="/idCheck", method = {RequestMethod.GET,RequestMethod.POST})
+	public int idCheck(@ModelAttribute UserVo userVo) {
+		
+		System.out.println("idCheck.Controller 접근");
+		System.out.println(userVo);
+
+		return userService.idSelect(userVo.getId());
+	}
 	
 	
 }

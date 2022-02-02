@@ -30,7 +30,14 @@ public class UserService {
 		
 	}
 	
-	//---------join 로그인-------------------------------------
+	//=======================================================
+	//---------아이디 중복 체크-------------------------------------
+	public int idSelect(String userId) {
+		
+		System.out.println("service.idSelect 접근");
+		
+		return userDao.idSelect(userId);
+	}
 	
 	
 	

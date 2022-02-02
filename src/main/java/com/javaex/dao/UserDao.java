@@ -31,6 +31,14 @@ public class UserDao {
 		sqlsession.insert("user.userInsert",userVo);
 	}
 	
-	
+	//=========================================================
+	//아이디 중복 체크----------------------------------------------
+	public int idSelect(String userId) {
+		
+		System.out.println("dao.idSelect 접근");
+		
+		return sqlsession.selectOne("user.idSelect",userId);
+		
+	}
 	
 }
