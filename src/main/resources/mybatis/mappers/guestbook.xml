@@ -54,7 +54,8 @@
 	<!-- 방명록 글 selectKey -->
 	<insert id="insertSelectKey" parameterType="com.javaex.vo.GuestbookVo">
 		<selectKey keyProperty="no" resultType="int" order="BEFORE">
-			select seq_guestbook_no.nextval from dual
+			select seq_guestbook_no.nextval 
+			from dual
 		</selectKey>
 		<![CDATA[
 			insert into guestbook
@@ -69,7 +70,11 @@
 	<!-- 방명록 글1개 가져오기 -->
 	<select id="selectByNo" parameterType="int" resultType="com.javaex.vo.GuestbookVo">
       	<![CDATA[
-	         select no, name, password, content, reg_date regDate
+	         select no,
+	         		name, 
+	         		password, 
+	         		content, 
+	         		reg_date regDate
 	         from guestbook
 	         where no = #{no}
       	]]>

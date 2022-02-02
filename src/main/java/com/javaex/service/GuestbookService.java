@@ -27,9 +27,8 @@ public class GuestbookService {
 	public int guestbookInsert(GuestbookVo guestbookVo) {
 		
 		System.out.println("service.insert 접근");
-		int count = guestbookDao.guestbookInsert(guestbookVo);
 		
-		return count;
+		return guestbookDao.guestbookInsert(guestbookVo);
 	}
 	
 	
@@ -37,9 +36,8 @@ public class GuestbookService {
 	public int guestbookDelete(int no, String password) {
 		
 		System.out.println("service.delete 접근");
-		int count = guestbookDao.guestbookDelete(no, password);
 		
-		return count;
+		return guestbookDao.guestbookDelete(no, password);
 	}
 	
 	//=========ajax 방명록====================================
