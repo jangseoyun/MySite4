@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -54,4 +55,39 @@ public class ApiGuestbookController {
 		
 		return gVo;
 	}
+	
+	//------------write2 글등록-----------------------------------
+	@ResponseBody
+	@RequestMapping("/write2")
+	//json문자열로 온것이다. java언어로 온것이 아님. 파라미터 않씀
+	public GuestbookVo write2(@RequestBody GuestbookVo guestbookVo) {
+		
+		System.out.println("controller.api/guest.write2 접근");
+		System.out.println(guestbookVo);
+		
+		//저장하고 저장된값 리턴
+		GuestbookVo gVo = guestbookService.addGuestResultVo(guestbookVo);
+		System.out.println(gVo);
+		
+		return gVo;
+	}
+
+	
+	//------------remove 삭제-----------------------------------
+	@ResponseBody
+	@RequestMapping("/remove")
+	public String remove(@ModelAttribute GuestbookVo guestbookVo) {
+		
+		System.out.println("controller.api/guest.remove 접근");
+		System.out.println(guestbookVo);
+		
+		String result = guestbookService.removeGuest(guestbookVo);
+		//"success" "fail"
+		System.out.println(result);
+		
+		
+		return result;
+	}
+
+
 }

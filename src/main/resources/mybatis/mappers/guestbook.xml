@@ -79,5 +79,14 @@
 	         where no = #{no}
       	]]>
 	</select>
+	
+	<!-- 방명록 글 삭제 -->
+	<delete id="ajaxDelete" parameterType="com.javaex.vo.GuestbookVo">
+		<![CDATA[
+			delete from guestbook 
+			where no= #{no} 
+			and password= #{password}
+		]]>
+	</delete>
 
 </mapper>

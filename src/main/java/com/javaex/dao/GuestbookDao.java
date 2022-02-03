@@ -77,6 +77,13 @@ public class GuestbookDao {
 		
 		return sqlsession.selectOne("guestbook.selectByNo", no);
 	}
+	
+	//방명록 글 삭제
+	public int delete(GuestbookVo guestbookVo){
+		System.out.println("guestbookDao/delete");
+		
+		return sqlsession.delete("guestbook.ajaxDelete", guestbookVo);
+	}
 
 	
 
