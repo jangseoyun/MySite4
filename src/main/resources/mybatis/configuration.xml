@@ -9,6 +9,7 @@
 		<mapper resource="mybatis/mappers/guestbook.xml" />
 		<mapper resource="mybatis/mappers/board.xml" />
 		<mapper resource="mybatis/mappers/rboard.xml" />
+		<mapper resource="mybatis/mappers/gallery.xml" />
 		<!-- 필요하면 늘려가면서 사용할 수 있음 -->
 	</mappers>
 </configuration>

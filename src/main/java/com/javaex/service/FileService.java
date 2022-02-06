@@ -29,7 +29,8 @@ public class FileService {
 		//2. 확장자(내보낼때)
 		//index이후의 값을 가져와라 
 		String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
-
+		//String exName2 = orgName.substring(orgName.lastIndexOf("."));
+		
 		//3+2 저장파일이름 +겹치지 않도록 현재올린 시간까지 올려준다
 		String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
 		System.out.println(saveName);
