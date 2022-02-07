@@ -23,4 +23,22 @@ public class GalleryDao {
 		return imgList;
 	}
 	
+	//-----이미지 컨텐츠 등록------------------------------------------
+	public int fileInsert(GalleryVo galleryVo) {
+		
+		System.out.println("Dao.fileInsert 접근");
+		int count = sqlSession.insert("gallery.fileInsert",galleryVo);
+		System.out.println(count);
+		return count;
+	}
+	
+	//-----해당 이미지Vo 가져오기------------------------------------------
+	public GalleryVo ImgVoSelect(int no) {
+		
+		System.out.println("Dao.ImgVoSelect 접근");
+		
+		GalleryVo getVo = sqlSession.selectOne("gallery.ImgVoSelect",no);
+		return getVo;
+	}
+	
 }

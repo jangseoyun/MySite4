@@ -17,6 +17,29 @@
 			where ga.user_no = ur.no
 		]]>
 	</select>
+	
+	<insert id="fileInsert" parameterType="com.javaex.vo.GalleryVo">
+		<![CDATA[
+			insert into gallery
+			values (seq_gallery_no.nextval,
+								 #{userNo},
+								 #{content},
+								 #{filePath},
+								 #{orgName},
+								 #{saveName},
+								 #{fileSize})
+		]]>
+	</insert>
+	
+	<select id="ImgVoSelect" parameterType="int" resultType="com.javaex.vo.GalleryVo">
+		<![CDATA[
+			select  saveName,
+	        		content,
+	       			user_no userNo
+			from gallery
+			where no = #{no}
+		]]>
+	</select>
 
 
 

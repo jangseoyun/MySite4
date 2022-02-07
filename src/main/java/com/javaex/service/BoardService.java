@@ -29,6 +29,17 @@ public class BoardService {
 	public int boardInsert(BoardVo boardVo) {
 		
 		System.out.println("service.board.boardInsert 접근");
+		
+		//페이징 데이터 추가 123개
+		/*for(int i = 1; i<=123; i++) {
+			boardVo.setTitle(i+"번째글 제목입니다.");
+			boardVo.setContent(i+"번째글 내용입니다.");
+			boardVo.setHit(0);
+			boardVo.setuNo(1);
+			
+			boardDao.boardInsert(boardVo);
+		}*/
+
 		return boardDao.boardInsert(boardVo);
 		
 	}
@@ -37,6 +48,8 @@ public class BoardService {
 	public int boardDelete(int bNo) {
 		
 		System.out.println("service.board.boardDelete 접근");
+		
+		
 		return boardDao.boardDelete(bNo);
 	}
 	
