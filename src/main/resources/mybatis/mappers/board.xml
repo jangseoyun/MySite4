@@ -31,6 +31,52 @@
 		]]>
 	</select>
 	
+	<!-- 글 리스트 가져오기(리스트+페이징) -->
+	<select id="getList2" parameterType="map" resultType="com.javaex.vo.BoardVo">
+		<![CDATA[
+			
+			select  rt.rn,
+					rt.bNo,
+			        rt.title,
+			        rt.content,
+			        rt.hit,
+			        rt.regDate,
+			        rt.userNo,
+			        rt.uName
+			from (select  rownum rn,
+						  ot.bNo,
+	                      ot.title,
+	                      ot.content,
+	                      ot.hit,
+	                      ot.regDate,
+	                      ot.userNo,
+	                      ot.uName
+			      from (select   b.no bNo,
+			                     b.title,
+			                     b.content,
+			                     b.hit,
+			                     to_Char(b.reg_date, 'yyyy-mm-dd HH:MI:SS') regDate,
+			                     b.user_no userNo,
+			                     u.name uName
+			            from board b , users u
+			            where b.user_no = u.no
+			            order by b.no desc) ot) rt
+			where rn>=#{startRnum} 
+			and rn<=#{endRnum}
+			
+		]]>
+	</select>
+	
+	<!-- 토탈수 가져오기 -->
+	<select id="totalCnt" resultType="int">
+		<![CDATA[	
+			select count(*)
+			from board b, users u
+			where b.user_no = u.no
+		]]>
+	</select>
+	
+
 	<!-- 게시글 등록 -->
 	<insert id="boardInsert" parameterType="com.javaex.vo.BoardVo">
 		<![CDATA[

@@ -194,7 +194,6 @@
 			
 		});
 		
-		
 		//팝업창
 		$('#viewModal').modal('show');
 		

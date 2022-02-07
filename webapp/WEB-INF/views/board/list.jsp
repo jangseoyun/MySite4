@@ -63,18 +63,18 @@
 								</tr>
 							</thead>
 
-							<c:forEach items="${requestScope.boardList}" var="boardList">
+							<c:forEach items="${pMap.boardList}" var="boardVo">
 								<tbody>
 									<tr>
-										<td>${boardList.bNo}</td>
+										<td>${boardVo.bNo}</td>
 										<td class="text-left">
-											<a href="${pageContext.request.contextPath}/board/read?bNo=${boardList.bNo}">${boardList.title}</a>
+											<a href="${pageContext.request.contextPath}/board/read?bNo=${boardVo.bNo}">${boardVo.title}</a>
 										</td>
-										<td>${boardList.uName}</td>
-										<td>${boardList.hit}</td>
-										<td>${boardList.regDate}</td>
-										<c:if test="${sessionScope.authUser.no == boardList.userNo}">
-											<td><a href="${pageContext.request.contextPath}/board/delete?bNo=${boardList.bNo}">[삭제]</a></td>
+										<td>${boardVo.uName}</td>
+										<td>${boardVo.hit}</td>
+										<td>${boardVo.regDate}</td>
+										<c:if test="${sessionScope.authUser.no == boardVo.userNo}">
+											<td><a href="${pageContext.request.contextPath}/board/delete?bNo=${boardVo.bNo}">[삭제]</a></td>
 										</c:if>
 									</tr>							
 								</tbody>
@@ -84,18 +84,19 @@
 
 						<div id="paging">
 							<ul>
-								<li><a href="">◀</a></li>
-								<li><a href="">1</a></li>
-								<li><a href="">2</a></li>
-								<li><a href="">3</a></li>
-								<li><a href="">4</a></li>
-								<li class="active"><a href="">5</a></li>
-								<li><a href="">6</a></li>
-								<li><a href="">7</a></li>
-								<li><a href="">8</a></li>
-								<li><a href="">9</a></li>
-								<li><a href="">10</a></li>
-								<li><a href="">▶</a></li>
+								<c:if test="${pMap.prev == true}">
+									<li><a href="${pageContext.request.contextPath}/board/list2?crtPage=${pMap.startPageBtnNo-1}">◀</a></li>								
+								</c:if>
+
+								<c:forEach begin="${pMap.startPageBtnNo}" end="${pMap.endPageBtnNo}" step="1" var="page">
+									<li class="active">
+										<a href="${pageContext.request.contextPath}/board/list2?crtPage=${page}">${page}</a>
+									</li>
+								</c:forEach>
+								
+								<c:if test="${pMap.next == true}">
+									<li><a href="${pageContext.request.contextPath}/board/list2?crtPage=${pMap.endPageBtnNo+1}">▶</a></li>								
+								</c:if>
 							</ul>
 
 
