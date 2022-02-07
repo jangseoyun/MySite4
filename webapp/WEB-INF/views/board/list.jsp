@@ -89,17 +89,24 @@
 								</c:if>
 
 								<c:forEach begin="${pMap.startPageBtnNo}" end="${pMap.endPageBtnNo}" step="1" var="page">
-									<li class="active">
-										<a href="${pageContext.request.contextPath}/board/list2?crtPage=${page}">${page}</a>
-									</li>
+									<c:choose>
+										<c:when test="${param.crtPage == page}">
+											<li class="active">
+												<a href="${pageContext.request.contextPath}/board/list2?crtPage=${page}">${page}</a>
+											</li>
+										</c:when>
+										<c:otherwise>
+											<li>
+												<a href="${pageContext.request.contextPath}/board/list2?crtPage=${page}">${page}</a>
+											</li>
+										</c:otherwise>
+									</c:choose>
 								</c:forEach>
 								
 								<c:if test="${pMap.next == true}">
 									<li><a href="${pageContext.request.contextPath}/board/list2?crtPage=${pMap.endPageBtnNo+1}">▶</a></li>								
 								</c:if>
 							</ul>
-
-
 							<div class="clear"></div>
 						</div>
 						
